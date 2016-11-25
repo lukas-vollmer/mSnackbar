@@ -9,12 +9,20 @@
     <script type="text/javascript" src="../dist/mSnackbar.min.js"></script>
     <script>
         $(document).ready(function() {
-            $.mSnackbar('Hello World').start();
+            $.mSnackbar('Welcome to mSnackbar');
+            $('#open').click(function() {
+                $.mSnackbar('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.');
+            });
+            $('#close').click(function() {
+                $.mSnackbar().close();
+            });
         });
     </script>
 </head>
 <body>
 
+<button id="open">Show mSnackbar</button>
+<button id="close">Remove mSnackbar</button>
 
 </body>
 </html>

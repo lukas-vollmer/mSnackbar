@@ -12,4 +12,4 @@ $.mSnackbar().close();
 ```
 
 
-Demo: [Sites Using React](https://lukas-vollmer.github.io/mSnackbar/demo/)
+simple Demo: [Demo](https://lukas-vollmer.github.io/mSnackbar/demo/)

@@ -13,20 +13,20 @@
             }
             if(el.find('.mSnackbar').length>0)
             {
-                el.append('<div class="mSnackbar">'+text+'</div>');
+                var dataId = (parseInt(el.find('.mSnackbar').last().data('id'))+1);
+                el.append('<div class="mSnackbar" data-id="'+dataId+'">'+text+'</div>');
+                setTimeout(function()
+                {
+                    el.find('.mSnackbar[data-id="'+dataId+'"]').not('.slideOut').addClass('slideOut');
+                }, 5000);
             }else{
-                el.append('<div class="mSnackbar slideIn">'+text+'</div>');
+                el.append('<div class="mSnackbar slideIn" data-id="0">'+text+'</div>');
             }
 
             el.find('.mSnackbar').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e)
             {
                 $(e.currentTarget).remove();
             });
-
-            setTimeout(function()
-            {
-                el.find('.mSnackbar').not('.slideOut').addClass('slideOut');
-            }, 5000);
         }
 
         function close()

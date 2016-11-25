@@ -10,3 +10,6 @@ Close mSnackbar:
 ```js
 $.mSnackbar().close();
 ```
+
+
+Demo: [Sites Using React](https://lukas-vollmer.github.io/mSnackbar/demo/)

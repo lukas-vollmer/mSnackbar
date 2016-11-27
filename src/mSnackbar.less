@@ -21,6 +21,7 @@
     float: right;
     clear: both;
     margin-bottom: 21px;
+    margin-top: 71px;
     -webkit-animation-duration: 0.3s;
     animation-duration: 0.3s;
     -webkit-animation-fill-mode: both;
@@ -29,38 +30,53 @@
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    @-webkit-keyframes slideInUp {
+    @-webkit-keyframes slideIn {
       from {
-        -webkit-transform: translate3d(0, 150%, 0);
-        transform: translate3d(0, 150%, 0);
-        visibility: visible;
+        margin-top: 71px;
       }
 
       to {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
+        margin-top: 0px;
       }
     }
 
-    @keyframes slideInUp {
+    @keyframes slideIn {
       from {
-        -webkit-transform: translate3d(0, 150%, 0);
-        transform: translate3d(0, 150%, 0);
-        visibility: visible;
+        margin-top: 71px;
       }
 
       to {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
+        margin-top: 0px;
+      }
+    }
+
+    @-webkit-keyframes slideOut {
+      from {
+        margin-top: 0px;
+      }
+
+      to {
+        margin-top: 71px;
+      }
+    }
+
+    @keyframes slideOut {
+      from {
+        margin-top: 0px;
+      }
+
+      to {
+        margin-top: 71px;
       }
     }
 
     &.slideIn{
-      -webkit-animation-name: slideInUp;
-      animation-name: slideInUp;
+      -webkit-animation-name: slideIn;
+      animation-name: slideIn;
     }
     &.slideOut{
-      margin-top: -71px;
+      -webkit-animation-name: slideOut;
+      animation-name: slideOut;
     }
   }
 }

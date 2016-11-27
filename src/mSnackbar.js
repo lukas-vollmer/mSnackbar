@@ -5,23 +5,33 @@
         var el = $('#mSnackbarContainer');
         if(text)
         {
-            el.find('.mSnackbar').not('.slideOut').addClass('slideOut');
             if(!el.length)
             {
                 $('body').append('<div id="mSnackbarContainer"></div>');
                 var el = $('#mSnackbarContainer');
             }
+            close();
             if(el.find('.mSnackbar').length>0)
             {
-                var dataId = (parseInt(el.find('.mSnackbar').last().data('id'))+1);
-                el.append('<div class="mSnackbar" data-id="'+dataId+'">'+text+'</div>');
                 setTimeout(function()
                 {
-                    el.find('.mSnackbar[data-id="'+dataId+'"]').not('.slideOut').addClass('slideOut');
-                }, 5000);
+                    el.append('<div class="mSnackbar slideIn" data-time="'+Math.floor(Date.now() / 1000)+'">'+text+'</div>');
+                }, 300);
             }else{
-                el.append('<div class="mSnackbar slideIn" data-id="0">'+text+'</div>');
+                el.append('<div class="mSnackbar slideIn" data-time="'+Math.floor(Date.now() / 1000)+'">'+text+'</div>');
             }
+
+            setTimeout(function()
+            {
+                if(el.find('.mSnackbar').data('time')-5<Math.floor(Date.now() / 1000)){
+                    el.find('.mSnackbar').addClass('slideOut');
+                    setTimeout(function()
+                    {
+                        el.find('.mSnackbar.slideOut').remove();
+                    }, 300);
+                }
+            }, 5000);
+
 
             el.find('.mSnackbar').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e)
             {
@@ -32,9 +42,12 @@
         function close()
         {
             el.find('.mSnackbar').not('.slideOut').addClass('slideOut');
+            setTimeout(function()
+            {
+                el.find('.mSnackbar.slideOut').remove();
+            }, 300);
         }
-        return
-        {
+        return{
             close: close
         }
     }

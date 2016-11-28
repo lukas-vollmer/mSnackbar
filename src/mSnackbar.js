@@ -1,5 +1,6 @@
 (function ($)
 {
+    var dataid = 5;
     jQuery.mSnackbar = function (text)
     {
         var el = $('#mSnackbarContainer');
@@ -9,34 +10,33 @@
             {
                 $('body').append('<div id="mSnackbarContainer"></div>');
                 var el = $('#mSnackbarContainer');
+                timeout();
             }
             close();
+            dataid = dataid+1;
             if(el.find('.mSnackbar').length>0)
             {
                 setTimeout(function()
                 {
-                    el.append('<div class="mSnackbar slideIn" data-time="'+Math.floor(Date.now() / 1000)+'">'+text+'</div>');
+                    el.append('<div class="mSnackbar slideIn" data-id="'+dataid+'">'+text+'</div>');
                 }, 300);
             }else{
-                el.append('<div class="mSnackbar slideIn" data-time="'+Math.floor(Date.now() / 1000)+'">'+text+'</div>');
+                el.append('<div class="mSnackbar slideIn" data-id="'+dataid+'">'+text+'</div>');
             }
-
-            setTimeout(function()
-            {
-                if(el.find('.mSnackbar').data('time')-5<Math.floor(Date.now() / 1000)){
-                    el.find('.mSnackbar').addClass('slideOut');
-                    setTimeout(function()
-                    {
-                        el.find('.mSnackbar.slideOut').remove();
-                    }, 300);
-                }
-            }, 5000);
-
-
+            dataid = 5;
             el.find('.mSnackbar').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e)
             {
                 $(e.currentTarget).remove();
             });
+        }
+
+        function timeout()
+        {
+            if(dataid==0){
+                close();
+            }
+            dataid = dataid-1;
+            setTimeout(timeout, 1000);
         }
 
         function close()
@@ -51,5 +51,4 @@
             close: close
         }
     }
-
 }(jQuery));
